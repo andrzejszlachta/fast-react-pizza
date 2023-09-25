@@ -1,12 +1,16 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import Home from './ui/Home'
-import Error from './ui/Error'
-import Menu, { loader as menuLoader } from './features/menu/Menu'
-import Cart from './features/cart/Cart'
-import CreateOrder, { action as createOrderAction } from './features/order/CreateOrder'
-import Order, { loader as orderLoader } from './features/order/Order'
-import AppLayout from "./ui/AppLayout"
+import Home from './ui/Home';
+import Error from './ui/Error';
+import Menu, { loader as menuLoader } from './features/menu/Menu';
+import Cart from './features/cart/Cart';
+import CreateOrder, {
+  action as createOrderAction,
+} from './features/order/CreateOrder';
+import Order, { loader as orderLoader } from './features/order/Order';
+import { action as updateOrderAction } from './features/order/UpdateOrder';
+
+import AppLayout from './ui/AppLayout';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +18,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <Home />,
       },
       {
@@ -37,15 +41,14 @@ const router = createBrowserRouter([
         element: <Order />,
         loader: orderLoader,
         errorElement: <Error />,
+        action: updateOrderAction,
       },
     ],
   },
-])
+]);
 
 function App() {
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
